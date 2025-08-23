@@ -78,20 +78,18 @@ SwipeCards/
 ---
 
 ## 📸 Screenshots
-
-1. **Swipe Screen**
-   ![Swipe Screen](Docs/swipe.png)
-
-2. **Detail Screen**
-   ![Detail Screen](Docs/detail.png)
+| Swipe Screen | Detail Screen |
+| ------------ | ------------- |
+| ![SwipeScreen](https://github.com/KYC3909/SwipeCards/blob/main/SwipeCards/Docs/swipe.png) | ![DetailScreen](https://github.com/KYC3909/SwipeCards/blob/main/SwipeCards/Docs/details.png) |
 
 ---
 
 ## 🎥 Demo Recording
 
-* [Demo Video](Docs/demo.mov)
+* [Demo Video](https://github.com/KYC3909/SwipeCards/blob/main/SwipeCards/Docs/demo.mp4)
 
-(To record: Run in **Xcode Simulator** → **File > Record Screen** → Save in `Docs/demo.mov`.)
+
+(To record: Run in **Xcode Simulator** → **File > Record Screen** → Save in `Docs/demo.mp4`.)
 
 ---
 
