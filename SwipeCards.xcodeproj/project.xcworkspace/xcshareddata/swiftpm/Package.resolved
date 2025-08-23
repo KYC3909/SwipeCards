@@ -1,0 +1,24 @@
+{
+  "originHash" : "8c5eff5c8c3a4faeb9153fbc3b5d58ec6f757e4e460a368f0752b195883d33f5",
+  "pins" : [
+    {
+      "identity" : "networkserviceprovider",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/KYC3909/NetworkServiceProvider.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "12b84e7c312c77420ad847e776bfe6836eeac4d5"
+      }
+    },
+    {
+      "identity" : "utilityprovider",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/KYC3909/UtilityProvider.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "da87a770252ea87034225f16d07bdf9a610f589b"
+      }
+    }
+  ],
+  "version" : 3
+}
