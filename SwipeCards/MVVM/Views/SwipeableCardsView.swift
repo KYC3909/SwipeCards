@@ -21,7 +21,9 @@ struct SwipeableCardsView: View {
         GeometryReader { geo in
             if let error = viewModel.errorValue {
                 ErrorView(errorTitle: error.localizedDescription, action: {
-                    viewModel.fetchUsers()
+                    Task {
+                        await viewModel.fetchUsersUsingAsync()
+                    }
                 })
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
@@ -31,7 +33,9 @@ struct SwipeableCardsView: View {
                 
             } else if viewModel.users.isEmpty {
                 FinishedView(action: {
-                    viewModel.fetchUsers()
+                    Task {
+                        await viewModel.fetchUsersUsingAsync()
+                    }
                 })
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
@@ -76,6 +80,11 @@ struct SwipeableCardsView: View {
             }
         }
         .padding()
+        .onAppear {
+            Task {
+                await viewModel.fetchUsersUsingAsync()
+            }
+        }
     }
 
     // MARK: - Gesture

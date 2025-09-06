@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 
+@MainActor
 /// ViewModel responsible for swipe logic and state
 final class SwipeableCardsViewModel: ObservableObject {
     /// Cards currently displayed
@@ -19,11 +20,12 @@ final class SwipeableCardsViewModel: ObservableObject {
     private let count: Int = 20
 
     init() {
-        fetchUsers()
+        //fetchUsers()
     }
 
     /// Fetch users from the network
     func fetchUsers() {
+        // Option 1
 //        NetworkServices.shared.fetchUsers(count: count) { [weak self] result in
 //            guard let self else { return }
 //            DispatchQueue.main.async {
@@ -37,6 +39,8 @@ final class SwipeableCardsViewModel: ObservableObject {
 //                }
 //            }
 //        }
+        
+        // Option 2
         RandomUserResponse.fetchData(count: count)
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -54,6 +58,19 @@ final class SwipeableCardsViewModel: ObservableObject {
             .store(in: &cancellables)
     }
 
+    // Option 3
+    func fetchUsersUsingAsync() async {
+        do {
+            // Convert Combine to AsyncSequence
+            for try await result in RandomUserResponse.fetchData(count: count).values {
+                self.users = result.results
+            }
+        } catch {
+            self.errorValue = error
+            self.users = []
+        }
+    }
+    
     /// Remove the top card from stack and store in discarded
     func removeTopCard() {
         guard let top = users.first else { return }
