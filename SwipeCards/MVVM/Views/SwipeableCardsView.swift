@@ -68,7 +68,7 @@ struct SwipeableCardsView: View {
                             selectedUser = user
                             showDetail = true
                         }
-                        .animation(.spring(response: 0.45, dampingFraction: 0.85), value: viewModel.users)
+//                        .animation(.spring(response: 0.45, dampingFraction: 0.85), value: viewModel.users)
                     }
                 }
                 // Navigate to detail screen
@@ -95,17 +95,13 @@ struct SwipeableCardsView: View {
             .onEnded { value in
                 let shouldThrow = abs(value.translation.width) > Constants.Swipe.throwDistance
                 if shouldThrow {
-                    withAnimation(.easeOut(duration: 0.35)) {
-                        drag.width = value.translation.width > 0 ? Constants.Swipe.flingOffset : -Constants.Swipe.flingOffset
-                    }
+                    drag.width = value.translation.width > 0 ? Constants.Swipe.flingOffset : -Constants.Swipe.flingOffset
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.34) {
                         viewModel.removeTopCard()
                         drag = .zero
                     }
                 } else {
-                    withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
-                        drag = .zero
-                    }
+                    drag = .zero
                 }
             }
     }
