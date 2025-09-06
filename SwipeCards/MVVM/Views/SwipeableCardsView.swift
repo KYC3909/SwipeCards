@@ -82,7 +82,7 @@ struct SwipeableCardsView: View {
         .padding()
         .onAppear {
             Task {
-                await viewModel.fetchUsersUsingAsync()
+                await viewModel.loadIfNeeded()
             }
         }
     }

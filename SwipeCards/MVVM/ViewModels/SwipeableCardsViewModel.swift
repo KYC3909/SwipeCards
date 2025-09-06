@@ -18,6 +18,7 @@ final class SwipeableCardsViewModel: ObservableObject {
     @Published private(set) var errorValue: Error?
     private var cancellables: [AnyCancellable] = []
     private let count: Int = 20
+    private var hasLoaded = false
 
     init() {
         //fetchUsers()
@@ -71,6 +72,14 @@ final class SwipeableCardsViewModel: ObservableObject {
         }
     }
     
+    
+    @MainActor
+    func loadIfNeeded() async {
+        guard !hasLoaded else { return }
+        hasLoaded = true
+        await fetchUsersUsingAsync()
+    }
+
     /// Remove the top card from stack and store in discarded
     func removeTopCard() {
         guard let top = users.first else { return }
